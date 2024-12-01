@@ -1,7 +1,7 @@
-export default function Acerola() {
+export default function QuemSomos() {
     return (
         <div>
-            <h1>quem somos</h1>
+            <h1>QUEM SOMOS</h1>
         </div>
     )
 }
