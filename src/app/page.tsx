@@ -1,7 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
-import  Bg  from "../../public/bg.jpg"
-
 export default function Home() {
   return (
       <main className="flex flex-col w-full">

@@ -1,4 +1,3 @@
-import test from "../images/teste.png"
 import Link from "next/link"
 
 export default function Signup() {
