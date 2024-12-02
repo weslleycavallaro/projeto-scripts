@@ -18,7 +18,7 @@ export function Header() {
           <Link href="../">Inicio</Link>
           <Link href="/quem-somos">Quem somos</Link>
         </div>
-        <div className="text-black">
+        <div className="text-black font-semibold">
           <Link href="/login">Login</Link>
         </div>
       </nav>
