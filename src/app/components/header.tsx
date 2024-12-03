@@ -17,6 +17,7 @@ export function Header() {
         <div className="gap-4 flex text-black hidden sm:flex font-semibold">
           <Link href="../">Inicio</Link>
           <Link href="/quem-somos">Quem somos</Link>
+          <Link href="/contato">Contato</Link>
         </div>
         <div className="text-black font-semibold">
           <Link href="/login">Login</Link>
