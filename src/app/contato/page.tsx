@@ -1,15 +1,11 @@
 "use client"
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Contato() {
 
-    const [modelo, setModelo] = useState("");
-    const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
-    const [email, setEmail] = useState("");
     const [res, setRes] = useState("");
     const router = useRouter();
 
@@ -68,7 +64,6 @@ export default function Contato() {
                         className="border-b-4 border-white bg-transparent placeholder:text-white w-52 h-1 p-6"
                         placeholder="Modelo desejado"
                         type="name"
-                        onChange={(evento) => setModelo(evento.target.value)}
                                 
                     />
                     <p className="text-red-500 mt-2 text-sm font-medium">{res}</p>
@@ -79,7 +74,6 @@ export default function Contato() {
                         className="border-b-4 border-white bg-transparent placeholder:text-white w-52 h-1 p-6"
                         placeholder="Nome"
                         type="name"
-                        onChange={(evento) => setNome(evento.target.value)}
                     />
                 </div>
 
@@ -98,8 +92,6 @@ export default function Contato() {
                         className="border-b-4 border-white bg-transparent placeholder:text-white w-52 h-1 p-6"
                         placeholder="Email"
                         type="email"
-                        onChange={(evento) => setEmail(evento.target.value)}
-                                    
                     />
                     <button type="submit" className="bg-transparent text-white flex w-52 h-8 mt-4 justify-center text-lg border border-white shadow-md transition ease-out delay-150 hover:scale-105 duration-300">ENVIAR</button>
                 </div>
