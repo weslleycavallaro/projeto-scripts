@@ -1,7 +1,6 @@
 "use client"
 
 import Image from "next/image";
-import Logo from "../../public/logo.png";
 import Porschegt3 from "../../public/porschegt3.jpg"
 import Porscheturbo from "../../public/porsche911.jpg"
 import Bmw from "../../public/bmwm4.jpg"
