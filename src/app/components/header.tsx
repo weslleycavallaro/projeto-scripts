@@ -7,7 +7,7 @@ export function Header() {
   return (
     <header className="border-b border px-2 py-1 bg-white">
       <nav className="flex items-center gap-8 justify-between">
-        <div id="menu" className=" flex sm:hidden w-32 items-start">
+        <div id="menu" className="sm:hidden w-32">
           <Dropdown />
         </div>
         <div id="logo">
