@@ -48,7 +48,7 @@ export default function Contato() {
 
   return (
       <main className="flex flex-col w-full h-auto overflow-y-auto bg-neutral-800">
-
+        
         <div className="relative flex justify-center w-full bg-[url('../../public/bg.jpg')] bg-cover bg-center h-full">
           <div className="absolute inset-0 bg-black bg-opacity-50"></div>
           <div className="relative z-10 justify-center p-20 h-auto">
@@ -66,7 +66,6 @@ export default function Contato() {
                         type="name"
                                 
                     />
-                    <p className="text-red-500 mt-2 text-sm font-medium">{res}</p>
                 </div>
 
                 <div>
@@ -85,6 +84,7 @@ export default function Contato() {
                         onChange={(evento) => setCpf(evento.target.value)}
                                 
                     />
+                    <p className="text-red-500 mt-2 text-sm font-medium">{res}</p>
                 </div>
                             
                 <div>
