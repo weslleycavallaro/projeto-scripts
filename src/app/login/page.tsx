@@ -1,30 +1,53 @@
 "use client"
 
-import Link from "next/link";
+import axios from "axios";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Login() {
 
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
-    const [erro, setErro] = useState("");
     const router = useRouter();
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault()
 
-        event.preventDefault();
+        // const request = await axios.post("/api/login", {
+        //     email,
+        //     senha
+        // })
+        
+        // alert(request);
 
-        if (email !== "teste@teste" || senha !== "teste") {
+        try {
 
-            setErro("Email ou Senha Invalidos!");
+            const response = await fetch("/api/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email,
+                    senha,
+                }),
+            });
 
-        } else {
+            const result = await response.json();
+        console.log("Resposta do servidor:", result);
 
-            setErro("");
+        if (response.ok) {
+            alert("Login bem-sucedido!");
             router.push('/');
-
+            
+        } else {
+            alert(`Erro ao logar: ${result.erro || result.mensagem}`);
         }
+    } catch (error) {
+        console.error("Erro ao enviar requisição:", error);
+        alert("Erro ao enviar dados.");
+    }
 
     }
 
@@ -63,7 +86,6 @@ export default function Login() {
                                 onChange={(evento) => setSenha(evento.target.value)}
                                 aria-required="true"
                             />
-                            {erro && <p id="senha-error" className="text-red-500 mt-2 text-sm font-medium" role="alert">{erro}</p>}
                             <button
                                 type="submit"
                                 className="bg-black text-white flex w-52 h-8 mt-4 justify-center text-lg rounded-md hover:bg-black shadow-md transition ease-out delay-150 hover:scale-105 duration-300"

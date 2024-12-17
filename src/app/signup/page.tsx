@@ -1,6 +1,84 @@
+"use client"
+
 import Link from "next/link"
+import { useState } from "react";
 
 export default function Signup() {
+
+    const [nome, setNome] = useState("");
+    const [email, setEmail] = useState("");
+    const [cpf, setCpf] = useState("");
+    const [senha, setSenha] = useState("");
+    const [res, setRes] = useState("");
+
+    const handleSubmit = async (event: React.FormEvent) => {
+
+        event.preventDefault();
+
+        if (nome === "" || email === "" || cpf === "" || senha === "") {
+
+            alert("Preencha todos os campos!")
+
+        } else {
+
+            let b1 = 0;
+            let b2 = 0;
+
+            let decremento = 9;
+            for (let i = 0; i < 9; i++) {
+
+                b1 += parseInt(cpf[i]) * (i + 1);
+                b2 += parseInt(cpf[i]) * decremento;
+                decremento--;
+
+            }
+
+            b1 %= 11;
+            b2 %= 11;
+
+            b1 = (b1 === 10) ? 0 : b1;
+            b2 = (b2 === 10) ? 0 : b2;
+
+            if (b1 == parseInt(cpf[9]) && b2 == parseInt(cpf[10])) {
+
+                try {
+                    const response = await fetch("../api/usuario", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            nome,
+                            email,
+                            cpf,
+                            senha,
+                        }),
+                    });
+    
+                    if (response.ok) {
+                        alert("Usuário cadastrado com sucesso!");
+                        setNome("");
+                        setEmail("");
+                        setCpf("");
+                        setSenha("");
+                    } else {
+                        const error = await response.json();
+                        alert(`Erro ao cadastrar usuário: ${error.mensagem}`);
+                    }
+                } catch (error) {
+                    console.error("Erro ao enviar requisição:", error);
+                    alert("Erro ao enviar dados.");
+                }
+            } else {
+
+                alert("CPF inválido!");
+
+            }
+
+        }
+
+    }
+
     return (
 
         <main className="flex justify-center items-center w-full h-full bg-white">
@@ -21,7 +99,20 @@ export default function Signup() {
 
                     <h1 className="text-3xl font-bold text-black" id="cadastro-header">Cadastrar</h1>
 
-                    <form action="#" method="POST">
+                    <form onSubmit={handleSubmit} action="#" method="POST">
+
+                        <div className="text-black">
+                            <label htmlFor="email" className="flex justify-start text-black">Nome</label>
+                            <input
+                                id="nome"
+                                className="border border-slate-300 w-52 h-1 p-4 rounded-md"
+                                placeholder="seu nome"
+                                type="nome"
+                                aria-label="Digite seu nome"
+                                onChange={(evento) => setNome(evento.target.value)}
+                            />
+                        </div>
+
                         <div className="text-black">
                             <label htmlFor="email" className="flex justify-start text-black">Email</label>
                             <input
@@ -30,17 +121,31 @@ export default function Signup() {
                                 placeholder="email@example.com"
                                 type="email"
                                 aria-label="Digite seu email"
+                                onChange={(evento) => setEmail(evento.target.value)}
                             />
                         </div>
 
-                        <div className="text-black"> 
-                            <label htmlFor="password" className="flex justify-start text-black">Password</label>
+                        <div className="text-black">
+                            <label htmlFor="email" className="flex justify-start text-black">CPF</label>
+                            <input
+                                id="cpf"
+                                className="border border-slate-300 w-52 h-1 p-4 rounded-md"
+                                placeholder=".../.../...-.."
+                                type="cpf"
+                                aria-label="Digite seu cpf"
+                                onChange={(evento) => setCpf(evento.target.value)}
+                            />
+                        </div>
+
+                        <div className="text-black">
+                            <label htmlFor="password" className="flex justify-start text-black">Senha</label>
                             <input
                                 id="password"
                                 className="border border-slate-300 w-52 h-1 p-4 rounded-md"
-                                placeholder="password"
+                                placeholder="senha"
                                 type="password"
                                 aria-label="Digite sua senha"
+                                onChange={(evento) => setSenha(evento.target.value)}
                             />
                             <button
                                 type="submit"
