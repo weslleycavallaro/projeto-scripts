@@ -14,13 +14,6 @@ export default function Login() {
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault()
 
-        // const request = await axios.post("/api/login", {
-        //     email,
-        //     senha
-        // })
-        
-        // alert(request);
-
         try {
 
             const response = await fetch("/api/login", {
@@ -35,7 +28,6 @@ export default function Login() {
             });
 
             const result = await response.json();
-        console.log("Resposta do servidor:", result);
 
         if (response.ok) {
             alert("Login bem-sucedido!");
@@ -45,7 +37,6 @@ export default function Login() {
             alert(`Erro ao logar: ${result.erro || result.mensagem}`);
         }
     } catch (error) {
-        console.error("Erro ao enviar requisição:", error);
         alert("Erro ao enviar dados.");
     }
 

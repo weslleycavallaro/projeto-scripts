@@ -9,7 +9,6 @@ export default function Signup() {
     const [email, setEmail] = useState("");
     const [cpf, setCpf] = useState("");
     const [senha, setSenha] = useState("");
-    const [res, setRes] = useState("");
 
     const handleSubmit = async (event: React.FormEvent) => {
 
@@ -66,7 +65,6 @@ export default function Signup() {
                         alert(`Erro ao cadastrar usuário: ${error.mensagem}`);
                     }
                 } catch (error) {
-                    console.error("Erro ao enviar requisição:", error);
                     alert("Erro ao enviar dados.");
                 }
             } else {
